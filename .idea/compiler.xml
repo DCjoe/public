@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="project-api" />
         <module name="project-common" />
-        <module name="project-commons" />
         <module name="project-dao" />
         <module name="project-model" />
         <module name="project-service" />
@@ -19,7 +18,6 @@
       <module name="project" target="1.8" />
       <module name="project-api" target="1.8" />
       <module name="project-common" target="1.8" />
-      <module name="project-commons" target="1.8" />
       <module name="project-dao" target="1.8" />
       <module name="project-model" target="1.8" />
       <module name="project-service" target="1.8" />
