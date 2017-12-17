@@ -3,20 +3,28 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xsi:schemaLocation="http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd
-         http://www.springframework.org/schema/aop
-          http://www.springframework.org/schema/aop/spring-aop.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/tx
+                            http://www.springframework.org/schema/tx/spring-tx.xsd
+                            http://www.springframework.org/schema/aop
+                            http://www.springframework.org/schema/aop/spring-aop.xsd
+                            http://www.springframework.org/schema/context
+                            http://www.springframework.org/schema/context/spring-context.xsd">
     <description>mybatis Configuration</description>
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="com.caesar" />
+
     <!-- 引入配置文件 -->
     <bean id="propertyConfigurer"
         class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties" />
     </bean>
-
+    <!--<context:property-placeholder location="classpath:jdbc.properties"/>-->
     <!-- 数据源配置,使用Druid数据库连接池 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <property name="driver" value="${jdbc.driver}"/>
+        <property name="driverClassName" value="${jdbc.driver}"/>
         <property name="url" value="${jdbc.url}"/>
         <property name="username" value="${jdbc.username}"/>
         <property name="password" value="${jdbc.password}"/>
@@ -53,13 +61,13 @@
         <!--分页插件-->
         <property name="plugins">
             <array>
-                <bean class="com.github.pagehelper.PageHelper">
+                <bean class="com.github.pagehelper.PageInterceptor">
                     <property name="properties">
                         <!-- reasonable启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页 -->
                         <!-- offsetAsPageNum设置为true时，会将RowBounds第一个参数offset当成pageNum页码使用 -->
                         <!-- rowBoundsWithCount设置为true时，使用RowBounds分页会进行count查询 -->
                         <value>
-                            dialect=mysql
+                            dialect=com.github.pagehelper.PageHelper
                             reasonable=true
                             offsetAsPageNum=true
                             rowBoundsWithCount=true
@@ -73,7 +81,7 @@
     <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.caesar.dao" />
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
     <!-- 事务管理器:基于jdbc,ibatis,mybaits的spring事务管理 -->

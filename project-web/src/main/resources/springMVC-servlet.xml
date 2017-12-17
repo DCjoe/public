@@ -41,6 +41,7 @@
     <!--<mvc:interceptors>
         <bean class="com.core.mvc.MyInteceptor" />
     </mvc:interceptors>-->
+    <mvc:view-controller path="/" view-name="index"/>
 
     <!-- 采用SpringMVC自带的JSON转换工具，支持@ResponseBody注解 -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
@@ -52,7 +53,7 @@
     </bean>
 
     <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
-    <bean id="mappingJacksonHttpMessageConverter"
+    <bean id="mappingJackson2HttpMessageConverter"
           class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
         <property name="supportedMediaTypes">
             <list>
@@ -68,7 +69,8 @@
              class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
          <property name="prefix" value="/WEB-INF/pages/" />
          <property name="suffix" value=".html" />
-         <property name="templateMode" value="HTML5" />
+         <property name="templateMode" value="HTML" />
+        <property name="characterEncoding" value="UTF-8"/>
          <property name="cacheable" value="false" />
     </bean>
     <bean id="templateEngine"
@@ -77,6 +79,7 @@
     </bean>
     <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
         <property name="templateEngine" ref="templateEngine" />
+        <property name="characterEncoding" value="UTF-8"/>
    </bean>
 
     <!-- 配置文件上传，如果没有使用文件上传可以不用配置，当然如果不配，那么配置文件中也不必引入上传组件包 -->
@@ -85,7 +88,7 @@
         <!-- 默认编码 -->
         <property name="defaultEncoding" value="utf-8" />
         <!-- 文件大小最大值 -->
-        <property name="maxUploadSize" value="10485760000" />
+        <property name="maxUploadSize" value="1048576000" />
         <!-- 内存中的最大值 -->
         <property name="maxInMemorySize" value="40960" />
     </bean>

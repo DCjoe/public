@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/project.iml" filepath="$PROJECT_DIR$/project.iml" />
       <module fileurl="file://$PROJECT_DIR$/project-api/project-api.iml" filepath="$PROJECT_DIR$/project-api/project-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/project-common/project-common.iml" filepath="$PROJECT_DIR$/project-common/project-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project-commons/project-common.iml" filepath="$PROJECT_DIR$/project-commons/project-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/project-dao/project-dao.iml" filepath="$PROJECT_DIR$/project-dao/project-dao.iml" />
       <module fileurl="file://$PROJECT_DIR$/project-model/project-model.iml" filepath="$PROJECT_DIR$/project-model/project-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/project-service/project-service.iml" filepath="$PROJECT_DIR$/project-service/project-service.iml" />
